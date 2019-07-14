@@ -1,0 +1,19 @@
+{
+  "name": "jobify",
+  "version": "1.0.0",
+  "description": "Gerenciador de vagas de emprego.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "jobify",
+    "job"
+  ],
+  "author": "Renan Caldeira Nunes",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1"
+  }
+}

@@ -1,0 +1,27 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+h1{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}
+
+ul{
+    list-style-type: none;
+    padding-left: 15;
+}
+
+h2{
+    background-color: purple;
+    color: white;
+    padding: 11;
+    font-size: 24;
+}
+
+h3{
+    font-size: 24;
+}
