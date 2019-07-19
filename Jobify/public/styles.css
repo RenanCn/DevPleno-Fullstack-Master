@@ -18,10 +18,27 @@ ul{
 h2{
     background-color: purple;
     color: white;
-    padding: 11;
     font-size: 24;
 }
 
 h3{
     font-size: 24;
 }
+
+.header{
+    background-color: purple;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.whitefont{
+    color: white;
+}
+
+.footer{
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
