@@ -2,8 +2,8 @@
 
     <%- include('header') %>
     
-    <% categorias.forEach(categoria => { %>
-        <%- categorias.categoria %>
+    <% categorias.forEach( categoria => { %>
+        <%- categoria.id %> = <%- categoria.categoria %>
     <% }) %>
 
         <h2>Vagas abertas:</h2>
