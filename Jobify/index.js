@@ -24,15 +24,13 @@ app.get('/vaga', (request, response) => {
 
 const init = async() =>{
     const db = await dbConnection
-    await db.run('create table if not exists categorias (id INTERGER PRIMARY KEY, categoria TEXT)')
+    await db.run('create table if not exists categorias (id INTEGER PRIMARY KEY, categoria TEXT)')
     const categoria = 'Time de Engenharia'
     await db.run(`insert into categorias(categoria) values('${categoria}') `)
-        
+
 }
 
-
-
-    init()
+init()
 
 
 
