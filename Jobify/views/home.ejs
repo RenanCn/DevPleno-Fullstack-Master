@@ -2,25 +2,25 @@
 
     <%- include('header') %>
     
-    <% categorias.forEach( categoria => { %>
-        <%- categoria.id %> = <%- categoria.categoria %>
-    <% }) %>
-
+        
         <h2>Vagas abertas:</h2>
 
-        <div>
-            <h3>Time de engenharia</h3>
-            <ul>
-                <li><a href="vaga">Desenvolvedor Fullstack.</a></li>
-            </ul>
-        </div>
+        <% categorias.forEach(categoria => { %>
 
-        <div>
-            <h3>Time de Marketing</h3>
-            <ul>
-                <li><a href="">Marketing digital.</a></li>
-            </ul>
-        </div>
+            <div>
+                <h3><%- categoria.categoria %></h3>
+                <ul>
+                    <% categoria.vagas.forEach(vaga => { %> 
+                         
+                    
+                        <li><a href="vaga"><%- vaga.titulo %> Desenvolvedor Fullstack.</a></li>
+
+                    <% }) %>
+                </ul>
+            </div>
+
+        <% }) %>
+
 
     <%- include('footer') %>
 
