@@ -18,27 +18,30 @@ app.get('/', async(request, response) => {
             vagas: vagas.filter( vaga => vaga.categoria === cat.id )
         }
     })
+    console.log(categorias)
     response.render('home', {
         categorias
     })
 })
 
-app.get('/vaga', (request, response) => {
+app.get('/vaga/:id', async(request, response) => {    
+    const db = await dbConnection
+    const vaga = await db.get('select * from vagas where id = ' + request.params.id)
+    console.log(vaga)
     response.render('vaga', {
-
+        vaga
     })
 })
 
-const init = async() =>{
+const init = async() => {
     const db = await dbConnection
     await db.run('create table if not exists categorias (id INTEGER PRIMARY KEY, categoria TEXT)')
     await db.run('create table if not exists vagas (id INTEGER PRIMARY KEY, categoria INTEGER, titulo TEXT, descricao TEXT)')
     //const categoria = 'Time de Marketing'
     //await db.run(`insert into categorias(categoria) values('${categoria}') `)
-    //const vaga = 'Marketing Digital'
-    //const descricao = 'Vaga para marketing digital.'
+    const vaga = 'Mídias Sociais'
+    const descricao = 'Vaga para mídias sociais.'
     //await db.run(`insert into vagas(categoria, titulo, descricao) values(2, '${vaga}', '${descricao}') `)
-
 }
 
 init()
@@ -53,3 +56,5 @@ app.listen(3000, (err) => {
         console.log('Servidor iniciado.')
     }
 })
+
+
