@@ -17,10 +17,11 @@
                     <textarea name="descricao"></textarea>
                     <br>
                     <label>Categoria: </label>
-                    <select name="categoria">
-                        <option>Engenharia</option>
-                        <option>Marketing</option>
-                    </select>
+                        <select name="categoria">
+                        <% categorias.forEach(categoria => { %>
+                            <option value="<%= categoria.id %>"> <%= categoria.categoria %></option> 
+                        <%})%>                       
+                        </select>
                     <br>
                     <button>Salvar Vaga</button>
                 </form>

@@ -1,12 +1,16 @@
 const express = require('express')
 const app = express()
 
+const bodyParser = require('body-parser')
+
 const sqlite = require('sqlite')
 const dbConnection = sqlite.open('banco.sqlite', { Promise })
 
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
+
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', async(request, response) => {
     const db = await dbConnection
@@ -18,7 +22,6 @@ app.get('/', async(request, response) => {
             vagas: vagas.filter( vaga => vaga.categoria === cat.id )
         }
     })
-    console.log(categorias)
     response.render('home', {
         categorias
     })
@@ -49,18 +52,22 @@ app.get('/admin/vagas/delete/:id', async(req, res) => {
 })
 
 app.get('/admin/vagas/nova/', async(req, res) =>{
-    res.render('admin/nova-vaga')
+    const db = await dbConnection
+    const categorias = await db.all('select * from categorias')
+    res.render('admin/nova-vaga', {categorias})
+})
+
+app.post('/admin/vagas/nova/', async(req,res) =>{
+    const {titulo, descricao, categoria} = req.body
+    const db = await dbConnection
+    await db.run(`insert into vagas(categoria, titulo, descricao) values('${categoria}', '${titulo}', '${descricao}') `)
+    res.redirect('/admin/vagas')
 })
 
 const init = async() => {
     const db = await dbConnection
     await db.run('create table if not exists categorias (id INTEGER PRIMARY KEY, categoria TEXT)')
     await db.run('create table if not exists vagas (id INTEGER PRIMARY KEY, categoria INTEGER, titulo TEXT, descricao TEXT)')
-    //const categoria = 'Time de Marketing'
-    //await db.run(`insert into categorias(categoria) values('${categoria}') `)
-    const vaga = 'Mídias Sociais'
-    const descricao = 'Vaga para mídias sociais.'
-    //await db.run(`insert into vagas(categoria, titulo, descricao) values(2, '${vaga}', '${descricao}') `)
 }
 
 init()
