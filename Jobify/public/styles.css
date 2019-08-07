@@ -42,3 +42,23 @@ h3{
     width: 100%;
 }
 
+label{
+    display: block;
+    margin: 20px 0 4px 0;
+}
+
+input,select{
+    display: block;
+    padding: 4px;
+    width: 540px;
+}
+
+button{
+    padding: 12px;
+}
+
+textarea{
+    padding: 8px;
+    width: 540px;
+    height: 220px;
+}

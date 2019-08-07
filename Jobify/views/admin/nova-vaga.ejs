@@ -1,0 +1,31 @@
+
+
+    <%- include('header') %>
+    
+        
+        <h2>
+            Nova vaga -
+            <a style="color: white" href="/admin/vagas"> Vagas</a>
+        </h2>
+
+            <div>
+                <form method="POST">
+                    <label>Título: </label>
+                    <input type="text" name="titulo">
+                    <br>
+                    <label>Descricão: </label>
+                    <textarea name="descricao"></textarea>
+                    <br>
+                    <label>Categoria: </label>
+                    <select name="categoria">
+                        <option>Engenharia</option>
+                        <option>Marketing</option>
+                    </select>
+                    <br>
+                    <button>Salvar Vaga</button>
+                </form>
+            </div>
+
+
+    <%- include('footer') %>
+

@@ -27,10 +27,29 @@ app.get('/', async(request, response) => {
 app.get('/vaga/:id', async(request, response) => {    
     const db = await dbConnection
     const vaga = await db.get('select * from vagas where id = ' + request.params.id)
-    console.log(vaga)
     response.render('vaga', {
         vaga
     })
+})
+
+app.get('/admin', (req, res) => {
+    res.render('admin/home')
+})
+
+app.get('/admin/vagas', async(req, res) => {
+    const db = await dbConnection
+    const vagas =  await db.all('select * from vagas;')
+    res.render('admin/vagas', { vagas })
+})
+
+app.get('/admin/vagas/delete/:id', async(req, res) => {
+    const db = await dbConnection
+    await db.run('delete from vagas where id = ' + req.params.id + '')
+    res.redirect('/admin/vagas')
+})
+
+app.get('/admin/vagas/nova/', async(req, res) =>{
+    res.render('admin/nova-vaga')
 })
 
 const init = async() => {
@@ -53,7 +72,7 @@ app.listen(3000, (err) => {
         console.log('ERRO: Não foi possível iniciar o servidor.')
     }
     else{
-        console.log('Servidor iniciado.')
+        console.log('Servidor iniciado. ' + Date())
     }
 })
 
